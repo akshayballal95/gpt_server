@@ -18,9 +18,12 @@ greenlet==2.0.2
 h11==0.14.0
 httptools==0.5.0
 idna==3.4
+inflection==0.5.1
+jsonschema==4.17.3
 langchain==0.0.163
 langcorn==0.0.9
 loguru==0.7.0
+mangum==0.17.0
 marshmallow==3.19.0
 marshmallow-enum==1.5.1
 multidict==6.0.4
@@ -28,9 +31,11 @@ mypy-extensions==1.0.0
 numexpr==2.8.4
 numpy==1.24.3
 openai==0.27.7
+openapi==1.1.0
 openapi-schema-pydantic==1.2.4
 packaging==23.1
 pydantic==1.10.8
+pyrsistent==0.19.3
 python-dotenv==1.0.0
 PyYAML==6.0
 requests==2.31.0
