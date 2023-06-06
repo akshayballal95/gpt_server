@@ -19,7 +19,7 @@ Assistant:"""
 
 prompt = PromptTemplate(
     input_variables=["history", "human_input"], 
-    template=template
+    template=template   
 )
 
 llm = OpenAI(temperature=0)
