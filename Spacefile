@@ -6,3 +6,8 @@ micros:
     engine: python3.9
     primary: true
     run: uvicorn app.main:app
+    presets: 
+      env: 
+        -name: OPENAI_API_KEY
+         description: Secret message only available to this Micro
+         default: "deta is cool"
