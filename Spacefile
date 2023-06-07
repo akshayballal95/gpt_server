@@ -11,3 +11,4 @@ micros:
         - name: OPENAI_API_KEY
           description: Secret message only available to this Micro
           default: "deta is cool"
+      api_keys: true
