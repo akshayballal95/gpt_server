@@ -30,4 +30,4 @@ llm = OpenAI(temperature=0)
 #     memory=ConversationBufferWindowMemory(k=2),
 # )
 
-conversation_chain =LLMChain(llm=OpenAI(temperature = 0.28),verbose=True, prompt =prompt)
+conversation_chain =LLMChain(llm=OpenAI(temperature = 0.28, max_tokens=128), verbose=True, prompt =prompt)
