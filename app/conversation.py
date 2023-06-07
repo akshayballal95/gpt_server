@@ -13,20 +13,21 @@ Assistant is constantly learning and improving, and its capabilities are constan
 
 Overall, Assistant is a powerful tool that can help with a wide range of tasks and provide valuable insights and information on a wide range of topics. Whether you need help with a specific question or just want to have a conversation about a particular topic, Assistant is here to assist.
 
-{history}
 Human: {human_input}
 Assistant:"""
 
 prompt = PromptTemplate(
-    input_variables=["history", "human_input"], 
+    input_variables=["human_input"], 
     template=template   
 )
 
 llm = OpenAI(temperature=0)
 
-conversation_chain = LLMChain(
-    llm=OpenAI(temperature=0), 
-    prompt=prompt, 
-    verbose=True, 
-    memory=ConversationBufferWindowMemory(k=2),
-)
+# conversation_chain = LLMChain(
+#     llm=OpenAI(temperature=0), 
+#     prompt=prompt, 
+#     verbose=True, 
+#     memory=ConversationBufferWindowMemory(k=2),
+# )
+
+conversation_chain =LLMChain(llm=OpenAI(temperature = 0.28),verbose=True, prompt =prompt)
