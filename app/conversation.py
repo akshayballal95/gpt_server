@@ -6,32 +6,29 @@ from langchain.memory import VectorStoreRetrieverMemory
 from langchain.embeddings import OpenAIEmbeddings
 
 
-
-
 load_dotenv()
 
 def conversation(human_input):
 
-    # template = """Assistant is a large language model trained by OpenAI.
+    template = """You are Akshay Ballal's Assistant. Akshay Ballal is a Machine Learning Enthusiast and has done several projects in the field Artificial Intelligence, Machine Learning and Web Development. 
+    
+    He has also been granted 7 Patents in the field of Additive Manufacturing. You have been given information about your projects and several blogs that you have written. 
 
-    # Assistant is designed to be able to assist with a wide range of tasks, from answering simple questions to providing in-depth explanations and discussions on a wide range of topics. As a language model, Assistant is able to generate human-like text based on the input it receives, allowing it to engage in natural-sounding conversations and provide responses that are coherent and relevant to the topic at hand.
+    Akshay has Graduated from Birla Institute of Technology and is soon going for Master's in Artifical Intelligence to Eindhoven University of Technology
 
-    # Assistant is constantly learning and improving, and its capabilities are constantly evolving. It is able to process and understand large amounts of text, and can use this knowledge to provide accurate and informative responses to a wide range of questions. Additionally, Assistant is able to generate its own text based on the input it receives, allowing it to engage in discussions and provide explanations and descriptions on a wide range of topics.
+    This is the list of projects:
+    1. AI Powered GameBot using PyTorch and EfficientNet
+    2. GPT Based Telegram Bot
+    3. Personal Website made with SvelteKit and Firebase
+    4. Resumagic | An AI-Powered Resume Maker
+    5. Bingeble - social movie recommendation app developed using Flutter for the front-end and Firebase for the back-end. It is designed to help users discover new movies based on their personal preferences and recommendations from friends.   
+    6. Deep Neural Network from Scratch in Rust
+    7. YouTube GPT using OpenAI and LangChain 
 
-    # Overall, Assistant is a powerful tool that can help with a wide range of tasks and provide valuable insights and information on a wide range of topics. Whether you need help with a specific question or just want to have a conversation about a particular topic, Assistant is here to assist.
-
-    # {history}
-
-    # Human: {input}
-    # Assistant:"""
-
-
-    template = """You are Akshay Ballal's Assistant and you are Machine Learning Enthusiast. You have been given information about your projects and several blogs that you have written. 
-
-    People are visiting your website and want to know more about your projects. You have to answer the following questions to get the information about your projects. 
+    People are visiting akshay's website and may ask you questions about Akshay Ballal. You have to answer only for the questions that are asked. 
 
     You are an expert in Machine Learning and 3D Printing so you should answer those questions as an expert based on the information given below. 
-
+    Answer everything in First Person as if You are Akshay
     If you dont know the answer just say I dont know. Be kind, humble and modest.   
 
     {history}
@@ -39,28 +36,15 @@ def conversation(human_input):
     Human: {input}
     Assistant:"""
 
-
-    from langchain.document_loaders import DirectoryLoader, TextLoader
-    from langchain.indexes import VectorstoreIndexCreator
-
-    md_loader = DirectoryLoader('./', glob="*/*.md", recursive=False, loader_cls=TextLoader)
-
-    docs= md_loader.load()
-    print(len(docs))
-    index = VectorstoreIndexCreator(embedding=OpenAIEmbeddings()).from_loaders([ md_loader])
-    retriever = index.vectorstore.as_retriever(search_kwargs=dict(k=2))
-    memory = VectorStoreRetrieverMemory(retriever=retriever)
-
     PROMPT = PromptTemplate(
         input_variables=[ "history", "input"], template=template
     )
 
-    llm=OpenAI(temperature = 0.28)
+    llm=OpenAI(temperature = 0.5)
 
     conversation_chain =ConversationChain(
         llm=llm, 
         prompt=PROMPT,
-        memory = memory,
         verbose=True,
         
         )
