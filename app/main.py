@@ -2,10 +2,21 @@
 from fastapi import FastAPI
 from langcorn import create_service
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from app.conversation import conversation
 
+class Input(BaseModel):
+    human_input: str
 
+class Output(BaseModel):
+    output: str
 
-app:FastAPI = create_service("app.conversation:conversation_chain")
+app=FastAPI()
+
+@app.post("/conversation")
+async def input(input: Input):
+    output = Output(output=conversation(input.human_input))
+    return output
 
 origins = [
     "http://localhost.tiangolo.com",
