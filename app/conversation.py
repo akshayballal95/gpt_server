@@ -4,7 +4,7 @@ from langchain.memory import ConversationBufferWindowMemory
 from dotenv import load_dotenv
 from langchain.memory import VectorStoreRetrieverMemory
 from langchain.embeddings import OpenAIEmbeddings
-
+from langchain.chat_models import ChatOpenAI
 
 load_dotenv()
 
@@ -40,7 +40,7 @@ def conversation(human_input):
         input_variables=[ "history", "input"], template=template
     )
 
-    llm=OpenAI(temperature = 0.5)
+    llm=ChatOpenAI(model_name="gpt-3.5-turbo")
 
     conversation_chain =ConversationChain(
         llm=llm, 
